@@ -1,0 +1,15 @@
+{
+  "name": "01_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "nodeServer.ts",
+  "scripts": {
+    "start": "clear && nodemon nodeServer.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.11.0"
+  }
+}

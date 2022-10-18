@@ -1,0 +1,10 @@
+body {
+  background-color: lightyellow;
+}
+* {
+  box-sizing: border-box;
+}
+
+img {
+  border: 2px solid red;
+}
