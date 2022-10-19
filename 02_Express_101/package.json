@@ -1,0 +1,18 @@
+{
+  "name": "02_express_101",
+  "version": "1.0.0",
+  "description": "",
+  "main": "expressServer.ts",
+  "scripts": {
+    "start": "nodemon expressServer.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.14"
+  }
+}
