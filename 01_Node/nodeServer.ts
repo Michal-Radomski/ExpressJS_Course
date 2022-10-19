@@ -40,9 +40,9 @@ const server = http.createServer((req, res) => {
     // console.log({ pageImage });
     res.write(pageImage);
     res.end();
-  } else if (req.url === "/style.css") {
-    res.writeHead(200, { "Content-Type": "text/css" });
-    const pageStyle = fs.readFileSync("./style.css");
+  } else if (req.url === "/style.less") {
+    res.writeHead(200, { "Content-Type": "text/less" });
+    const pageStyle = fs.readFileSync("./style.less");
     // console.log({ pageStyle });
     res.write(pageStyle);
     res.end();
