@@ -1,0 +1,28 @@
+doctype html
+html
+    head
+        title NodeJS + PUG
+        link(rel="icon" type="image/png" href="./favicon.png")
+        meta(charset="UTF-8")
+        meta(name="description" content="HBS")
+        meta(name="keywords" content="HBS" )
+        meta(name="author" content="np. MichRad")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-Ua-Compatible" content="IE=edge")
+        link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css', rel='stylesheet')
+        link(rel="stylesheet" href="style.css")
+    
+    body
+        h1(style={ 'color': 'orange', "text-align": 'center' }) PUG website
+
+        div.container
+            div
+                div.col-sm-3 msg: #{msg}
+                div.col-sm-6 msg2: #{msg2}
+                div.col-sm-12 encoded picture: !{html} 
+            div.row
+                ul.col-sm-12
+                    each country in countries
+                        li= country.name + ' -> ' + country.capital
+
+            div Message of the day: 2+2 = #{2+2}
