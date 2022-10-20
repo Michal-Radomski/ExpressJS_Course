@@ -6,20 +6,22 @@ import path from "path";
 const app: Express = express();
 
 // Middleware
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: false,
-//     crossOriginResourcePolicy: false,
-//     crossOriginEmbedderPolicy: false,
-//     crossOriginOpenerPolicy: false,
-//   })
-// );
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
+    crossOriginOpenerPolicy: false,
+  })
+);
 // app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // View engine
 app.set("view engine", "ejs");
+// app.set("view engine", "hbs");
+// app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
 // Test route
