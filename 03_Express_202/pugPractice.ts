@@ -28,10 +28,6 @@ app.set("views", path.join(__dirname, "view_PUG"));
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   res.render("index", {
-    country: {
-      name: "Poland",
-      bestCity: "Gdansk",
-    },
     msg: "Failure!",
     msg2: "Success!",
     html: encodedPic,
