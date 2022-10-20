@@ -5,7 +5,8 @@
   "scripts": {
     "start": "nodemon appUse.ts",
     "start2": "nodemon helmetAndOthers.ts",
-    "start3": "nodemon rendering.ts"
+    "start3": "nodemon rendering.ts",
+    "start4": "nodemon ejsPractice.ts"
   },
   "keywords": [],
   "author": "",

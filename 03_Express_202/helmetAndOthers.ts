@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: false })); //* parses body (like body-par
 // app.use(bodyParser.json());
 // app.use(bodyParser.urlencoded({ extended: true }));
 
-// Test route
+// Routes
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   res.send("<h1 style='color:green;text-align:center'>API is running - helmetAndOthers.ts</h1>");

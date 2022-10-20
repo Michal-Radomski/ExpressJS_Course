@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 // app.set("view engine", "pug");
 app.set("views", path.join(__dirname, "views"));
 
-// Test route
+// Route
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   // res.send("<h1 style='color:blue;text-align:center'>API is running - rendering.ts</h1>");

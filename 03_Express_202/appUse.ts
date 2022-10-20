@@ -18,7 +18,7 @@ app.use(validateUser); //* At application level - run on every HTTP request
 //* This will run validateUser on '/', only on get methods! And, by the way, it looks like this...
 // app.get("/", validateUser);
 
-// Test route
+// Routes
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   res.send("<h1 style='color:blue;text-align:center'>API is running - appUse.ts</h1>");
