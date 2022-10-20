@@ -16,13 +16,13 @@ app.use(
     crossOriginOpenerPolicy: false,
   })
 );
-app.use(express.static("view_EJS"));
+app.use(express.static("view_HBS"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // View engine
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "view_EJS"));
+app.set("view engine", "hbs");
+app.set("views", path.join(__dirname, "view_HBS"));
 
 function validateUser(_req: Request, res: Response, next: NextFunction) {
   res.locals.validated = true;
@@ -34,9 +34,25 @@ app.use(validateUser);
 app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   res.render("index", {
+    country: {
+      name: "Poland",
+      bestCity: "Gdansk",
+    },
     msg: "Failure!",
     msg2: "Success!",
     html: encodedPic,
+    countries: [
+      {
+        name: "Ukraine",
+        capital: "Kiev",
+        western: false,
+      },
+      {
+        name: "England",
+        capital: "London",
+        western: true,
+      },
+    ],
   });
 });
 app.get("/about", (req: Request, res: Response) => {

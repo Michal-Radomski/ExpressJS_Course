@@ -6,7 +6,8 @@
     "start": "nodemon appUse.ts",
     "start2": "nodemon helmetAndOthers.ts",
     "start3": "nodemon rendering.ts",
-    "start4": "nodemon ejsPractice.ts"
+    "start4": "nodemon ejsPractice.ts",
+    "start5": "nodemon hbsPractice.ts"
   },
   "keywords": [],
   "author": "",
