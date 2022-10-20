@@ -1,15 +1,25 @@
 import express, { Express, Request, Response } from "express";
 import helmet from "helmet";
 import path from "path";
+// import bodyParser from "body-parser";
 
 // The server
 const app: Express = express();
 
 // Middleware
-// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: false,
+    crossOriginEmbedderPolicy: false,
+    crossOriginOpenerPolicy: false,
+  })
+);
 app.use(express.static("public"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false })); //* parses body (like body-parser)
+app.use(express.urlencoded({ extended: false })); //* parses body (like body-parser) -> false for array, true for any object
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 // Test route
 app.get("/", (req: Request, res: Response) => {
@@ -27,7 +37,7 @@ app.get("/test", (req: Request, res: Response) => {
 
 app.post("/test", (req: Request, res: Response) => {
   // console.log("req.body:", req.body);
-  console.log("req.headers:", req.headers);
+  // console.log("req.headers:", req.headers);
   res.json(["Test", 1, 2, 3, 4]);
 });
 
