@@ -38,7 +38,8 @@ app.get("/test", (req: Request, res: Response) => {
 app.post("/test", (req: Request, res: Response) => {
   // console.log("req.body:", req.body);
   // console.log("req.headers:", req.headers);
-  res.json(["Test", 1, 2, 3, 4]);
+  // res.send("This is answer");
+  res.json(["This is answer", 1, 2, 3, 4]);
 });
 
 // Port
