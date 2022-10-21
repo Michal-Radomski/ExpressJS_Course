@@ -37,7 +37,7 @@ app.set("views", path.join(__dirname, "views"));
 
 // Routes
 app.get("/", (_req: Request, res: Response) => {
-  // console.log("req.ip:", req.ip);
+  // console.log("req.ip:", _req.ip);
   // res.send("<h1 style='color:orangered;text-align:center'>API is running</h1>");
   res.redirect("/login");
 });

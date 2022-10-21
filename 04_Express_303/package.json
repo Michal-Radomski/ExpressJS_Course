@@ -4,7 +4,8 @@
   "description": "",
   "main": "loginSite.ts",
   "scripts": {
-    "start": "nodemon loginSite.ts"
+    "start": "nodemon loginSite.ts",
+    "start2": "nodemon routerApp.ts"
   },
   "keywords": [],
   "author": "",
