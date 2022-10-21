@@ -60,7 +60,7 @@ app.post("/process_login", (req: Request, res: Response) => {
     res.redirect("/welcome");
   } else {
     // The "?" is a special character in a URL
-    res.redirect("/login?msg=fail&test=hello");
+    res.redirect("/login?msg=fail");
   }
   // res.json(req.body);
 });
