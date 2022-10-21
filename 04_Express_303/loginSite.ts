@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
-import express, { Express, Request, Response } from "express";
+import express, { Express, NextFunction, Request, Response } from "express";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import path from "path";
@@ -22,6 +22,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use((req: Request, res: Response, next: NextFunction) => {
+  if (req.query.msg === "fail") {
+    res.locals.msg = `Sorry. This username and password combination does not exist.`;
+  } else {
+    res.locals.msg = ``;
+  }
+  next();
+});
+
 // View engine
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -33,7 +42,11 @@ app.get("/", (_req: Request, res: Response) => {
   res.redirect("/login");
 });
 app.get("/login", (req: Request, res: Response) => {
-  console.log("req.ip:", req.ip);
+  // console.log("req.query:", req.query);
+  const msg = req.query?.msg;
+  if (msg === "fail") {
+    console.log("Login failed", { msg });
+  }
   res.render("login");
 });
 app.post("/process_login", (req: Request, res: Response) => {
