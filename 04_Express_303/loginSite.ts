@@ -37,6 +37,14 @@ app.set("views", path.join(__dirname, "views"));
 
 // Routes
 app.get("/", (_req: Request, res: Response) => {
+  //* Setting Headers - temporarily
+  // const date = new Date(1978, 6, 20);
+  // res.set("Date", date.toLocaleDateString());
+  // res.set("Content-Type", "text-plain");
+  // res.set("Cache-Control", "public, max-age=604800"); //* in seconds
+  // res.set("Cache-Control", "no-store"); //* no cache in browser
+  //* ----------------------
+
   // console.log("req.ip:", _req.ip);
   // res.send("<h1 style='color:orangered;text-align:center'>API is running</h1>");
   res.redirect("/login");
