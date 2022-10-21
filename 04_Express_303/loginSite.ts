@@ -77,6 +77,30 @@ app.get("/logout", (_req: Request, res: Response) => {
   res.redirect("/login");
 });
 
+app.param("id", (_req: Request, _res: Response, next: NextFunction, id: number) => {
+  console.log("Params called:", { id });
+  next();
+});
+
+app.get("/story/:id", (req: Request, res: Response) => {
+  // console.log("req.params:", req.params);
+  res.send(`<h1>Story ${req.params.id}</h1>`);
+});
+
+app.get("/statement", (_req: Request, res: Response) => {
+  const date = new Date();
+  res.download(path.join(__dirname, "userStatements/BankStatementChequing.png"), `Statement-${date}.png`, (error) => {
+    if (error) {
+      console.log({ error });
+    }
+  });
+  //* SendFile will load in the browser - res.set -> sets Header: "Content-Disposition", "attachment"!
+  // res.set("Content-Disposition", "attachment");
+  // res.sendFile(path.join(__dirname, "userStatements/BankStatementChequing.png"));
+  //* Sets the HTTP response Content-Disposition header field to “attachment”.
+  // res.attachment(path.join(__dirname, "userStatements/BankStatementChequing.png"));
+});
+
 // Port
 const port = (process.env.PORT || 5000) as number;
 
