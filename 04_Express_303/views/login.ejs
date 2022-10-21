@@ -1,0 +1,15 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/4.1.3/less.min.js" defer></script>
+<!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+<link rel="stylesheet/less" type="text/css" href="styles.less" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<div class="login-page">
+  <div class="form">
+    <!-- action -> route where data is send -->
+    <form action="/process_login" method="post" class="login-form">
+      <input type="email" placeholder="username" name="username" />
+      <input type="password" placeholder="password" name="password" />
+      <button>login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
