@@ -27,7 +27,7 @@ app.get("/test", (req: Request, res: Response) => {
   res.send("<h1 style='color:orangered;text-align:center'>API is running</h1>");
 });
 //* Favicon
-app.get("/favicon.ico", (_req, res) => {
+app.get("/favicon.ico", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/public/favicon.png"));
 });
 
