@@ -10,7 +10,7 @@ import path from "path";
 import http from "http";
 
 // Import routes
-import indexRouter from "./routes";
+import indexRouter from "./routes/index";
 
 // The server
 const app: Express = express();

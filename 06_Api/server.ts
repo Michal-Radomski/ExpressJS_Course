@@ -10,7 +10,9 @@ import path from "path";
 import http from "http";
 
 // Import routes
-import indexRouter from "./routes";
+import indexRouter from "./routes/index";
+import movieRouter from "./routes/movie";
+import searchRouter from "./routes/search";
 
 // The server
 const app: Express = express();
@@ -33,6 +35,12 @@ app.use(
     crossOriginOpenerPolicy: false,
   })
 );
+
+//* Favicon
+app.get("/favicon.ico", (_req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname + "/public/favicon.png"));
+});
+
 app.use((req: Request, res: Response, next: NextFunction) => {
   // Cut off the response if the api key is bad
   if (req.query.api_key != process.env.API_KEY) {
@@ -43,11 +51,6 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-//* Favicon
-app.get("/favicon.ico", (_req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname + "/public/favicon.png"));
-});
-
 // Test route
 // app.get("/test", (req: Request, res: Response) => {
 //   console.log("req.ip:", req.ip);
@@ -56,6 +59,8 @@ app.get("/favicon.ico", (_req: Request, res: Response) => {
 
 //Route middleware
 app.use("/", indexRouter);
+app.use("/movie", movieRouter);
+app.use("/search", searchRouter);
 
 const errorPage = createError(404, "This page does not exist!");
 app.use(function (_req: Request, _res: Response, next: NextFunction) {
