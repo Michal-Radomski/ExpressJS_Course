@@ -18,9 +18,10 @@ function requireJSON(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-movieRouter.param("movieId", (_req: Request, _res: Response, next: NextFunction) => {
+movieRouter.param("movieId", (req: Request, _res: Response, next: NextFunction) => {
   // If only certain apiKey are allowed to hit movieId - update the db with analytics data
   console.log("Someone hit a route that used the movieId wildcard!");
+  console.log("req.query:", req.query);
   next();
 });
 
@@ -33,14 +34,14 @@ movieRouter.get("/top_rated", (req: Request, res: Response) => {
     page = "1";
   }
   const results = movieDetails.sort((a, b) => {
-    return b.vote_average - a.vote_average;
+    return b.vote_average - a.vote_average; //* descending order
   });
   const indexToStart = (parseInt(page as string) - 1) * 20;
   res.json(results.slice(indexToStart, indexToStart + 20));
 });
 
 // GET /movie/movieId
-//- This one needs to come last of all /ONETHING
+//* This one needs to come last of all /ONETHING
 movieRouter.get("/:movieId", (req: Request, res: Response) => {
   const movieId = req.params.movieId;
   const result = movieDetails.find((movie) => {
@@ -60,11 +61,13 @@ movieRouter.get("/:movieId", (req: Request, res: Response) => {
 
 // POST /movie/{movie_id}/rating
 movieRouter.post("/:movieId/rating", requireJSON, (req: Request, res: Response) => {
-  const movieIe = req.params.movieId;
+  // const movieId = req.params.movieId;
+  // console.log({movieId})
   // console.log(req.get('content-type'))
   const userRating = req.body.value;
+  // console.log({userRating})
   if (userRating < 0.5 || userRating > 10) {
-    res.json({ msg: "Rating must be between .5 and 10" });
+    res.json({ msg: "Rating must be between 0.5 and 10" });
   } else {
     res.json({
       msg: "Thank you for submitting your rating.",
