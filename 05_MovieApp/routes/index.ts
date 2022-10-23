@@ -47,4 +47,22 @@ indexRouter.get("/movie/:id", async (req, res) => {
   });
 });
 
+indexRouter.post("/search", async (req: Request, res: Response) => {
+  // res.send("JSON.stringify(req.body):" + JSON.stringify(req.body));
+  const userSearchTerm = encodeURI(req.body.movieSearch);
+  const cat = req.body.cat;
+  // console.log({ userSearchTerm, cat });
+  const movieUrl = `${apiBaseUrl}/search/${cat}?query=${userSearchTerm}&api_key=${apiKey}`;
+  // res.send(movieUrl);
+  const response = await axios.get(movieUrl);
+  const dataToDisplay = response?.data;
+  // res.json({ dataToDisplay });
+  if (cat == "person") {
+    dataToDisplay.results = dataToDisplay.results[0].known_for;
+  }
+  res.render("index", {
+    dataToDisplay: dataToDisplay.results,
+  });
+});
+
 export default indexRouter;
