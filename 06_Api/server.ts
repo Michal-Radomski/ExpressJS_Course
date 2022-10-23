@@ -44,7 +44,7 @@ app.get("/favicon.ico", (_req: Request, res: Response) => {
 //* Cut off the response if the api key is bad
 app.use((req: Request, res: Response, next: NextFunction) => {
   if (req.query.api_key != process.env.API_KEY) {
-    res.status(401); //* Unauthorized = 401
+    res.status(401); //* Unauthorized = 401 NOT 200
     res.json("Invalid API Key");
   } else {
     next();
