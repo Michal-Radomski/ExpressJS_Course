@@ -38,6 +38,10 @@ app.use(
 app.get("/favicon.ico", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/public/favicon.png"));
 });
+//* LESS Style
+app.get("/movie/style.less", (_req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname + "/public/style.less"));
+});
 
 // Test route
 app.get("/test", (req: Request, res: Response) => {

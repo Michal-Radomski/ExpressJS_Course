@@ -21,7 +21,11 @@
         <div class="col-sm-12">
           <% dataToDisplay.forEach((movie)=>{ %>
 
-          <div class="col-md-3 col-sm-4 poster"><img src="<%= imageBaseUrl + movie.poster_path %> " /></div>
+          <div class="col-md-3 col-sm-4 poster">
+            <a href="/movie/<%=movie.id %> ">
+              <img src="<%= imageBaseUrl + movie.poster_path %> " />
+            </a>
+          </div>
 
           <% }) %>
         </div>

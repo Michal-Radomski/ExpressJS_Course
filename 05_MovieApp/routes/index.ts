@@ -31,4 +31,20 @@ indexRouter.get("/", async function (_req: Request, res: Response) {
   });
 });
 
+//* /movie/:id is a wildcard route.
+indexRouter.get("/movie/:id", async (req, res) => {
+  const movieId = req.params.id;
+  // console.log({ movieId });
+  const thisMovieUrl = `${apiBaseUrl}/movie/${movieId}?api_key=${apiKey}`;
+  // console.log({ thisMovieUrl });
+  // res.send({ thisMovieUrl });
+  const response = await axios.get(thisMovieUrl);
+  const dataToDisplay = response?.data;
+  // console.log({ dataToDisplay });
+  // res.json({ dataToDisplay });
+  res.render("single-movie", {
+    dataToDisplay: dataToDisplay,
+  });
+});
+
 export default indexRouter;

@@ -8,18 +8,14 @@
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<h1 class="single-movie-title">
-					<%= parsedData.title %>
+					<%= dataToDisplay.title %>
 				</h1>
-				
 				<h3 class="single-movie-title">
-					<%= parsedData.tagline %>
+					<%= dataToDisplay.tagline %>
 				</h3>
-				
-
-				<a href="<%= parsedData.homepage %>"><img src="<%= imageBaseUrl+parsedData.poster_path %>" /></a>
-				
+				<a href="<%= dataToDisplay.homepage %>"><img src="<%= imageBaseUrl+dataToDisplay.poster_path %>" /></a>				
 				<p class="overview-header">Movie Synopsis: <span class="single-movie-overview">
-					<%= parsedData.overview %>
+					<%= dataToDisplay.overview %>
 				</span></p>
 			</div>
 		</div>
@@ -41,23 +37,21 @@
         <h4 class="modal-title" id="myModalLabel">Movie Information</h4>
       </div>
       <div class="modal-body">
-				<a href="https://www.imdb.com/title/<%= parsedData.imdb_id %>" target="_blank">IMDB link</a>
-				<p><%= parsedData.budget %></p>
-				<p><%= parsedData.revenue %></p>
-				<p><%= parsedData.release_date%></p>
+				<a href="https://www.imdb.com/title/<%= dataToDisplay.imdb_id %>" target="_blank">IMDB link</a>
+				<p><%= dataToDisplay.budget %></p>
+				<p><%= dataToDisplay.revenue %></p>
+				<p><%= dataToDisplay.release_date%></p>
 				<ul>
-					<% parsedData.production_companies.forEach((company)=>{ %>
+					<% dataToDisplay.production_companies.forEach((company)=>{ %>
 						<li><%= company.name %></li>
 					<% }) %>
 				</ul>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
 </div>
-
 </body>
 </html>
