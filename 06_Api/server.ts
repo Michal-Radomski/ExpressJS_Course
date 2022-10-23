@@ -41,8 +41,8 @@ app.get("/favicon.ico", (_req: Request, res: Response) => {
   res.sendFile(path.join(__dirname + "/public/favicon.png"));
 });
 
+//* Cut off the response if the api key is bad
 app.use((req: Request, res: Response, next: NextFunction) => {
-  // Cut off the response if the api key is bad
   if (req.query.api_key != process.env.API_KEY) {
     res.status(401); //* Unauthorized = 401
     res.json("Invalid API Key");
@@ -51,7 +51,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
   }
 });
 
-// Test route
+//* Test route
 // app.get("/test", (req: Request, res: Response) => {
 //   console.log("req.ip:", req.ip);
 //   res.send("<h1 style='color:blue;text-align:center'>API is running - server.ts</h1>");
