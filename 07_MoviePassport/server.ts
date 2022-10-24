@@ -1,3 +1,5 @@
+import path from "path";
+import http from "http";
 import * as dotenv from "dotenv";
 dotenv.config();
 import express, { Express, NextFunction, Request, Response } from "express";
@@ -6,14 +8,51 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import createError from "http-errors";
-import path from "path";
-import http from "http";
+
+//* Passport files
+import session from "express-session";
+import passport from "passport";
+const GitHubStrategy = require("passport-github").Strategy;
+// console.log({GitHubStrategy});
 
 // Import routes
 import indexRouter from "./routes/index";
 
 // The server
 const app: Express = express();
+
+//* Passport Config
+app.use(
+  session({
+    secret: process.env.SessionSecret as string,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.ClientID as string,
+      clientSecret: process.env.ClientSecret as string,
+      callbackURL: process.env.CallbackURL as string,
+    },
+    function (_accessToken: string, _refreshToken: string, profile: Object, cb: Function) {
+      // console.log({ _accessToken, _refreshToken });
+      // console.log({ profile });
+      return cb(null, profile);
+    }
+  )
+);
+passport.serializeUser((user, cb) => {
+  // console.log({ user });
+  cb(null, user);
+});
+passport.deserializeUser((user, cb) => {
+  // console.log({ user });
+  cb(null, user!);
+});
 
 // view engine setup
 app.set("view engine", "ejs");
