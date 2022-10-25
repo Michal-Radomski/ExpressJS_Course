@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import createError from "http-errors";
+import cors from "cors";
 import path from "path";
 import http from "http";
 
@@ -13,19 +14,12 @@ import indexRouter from "./routes";
 // The server
 const app: Express = express();
 
-// Allow cross-origin.....
-app.use(function (_req: Request, res: Response, next: NextFunction) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  next();
-});
-
 // Middlewares
+app.use(cors());
 app.use(cookieParser());
-app.use(express.static("public"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.json({ limit: "5mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "5mb" }));
 app.use(morgan("combined"));
 app.use(
   helmet({

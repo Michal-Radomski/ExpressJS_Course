@@ -1,5 +1,5 @@
 {
-  "name": "05_movieapp",
+  "name": "09a_multer",
   "version": "1.0.0",
   "description": "",
   "main": "server.ts",

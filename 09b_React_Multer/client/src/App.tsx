@@ -1,9 +1,14 @@
 import React from "react";
 
 import "./App.scss";
+import FileForm from "./FileForm";
 
-function App() {
-  return <React.Fragment>App</React.Fragment>;
+function App(): JSX.Element {
+  return (
+    <React.Fragment>
+      <FileForm />
+    </React.Fragment>
+  );
 }
 
 export default App;
